@@ -1,4 +1,4 @@
-package fm.com.jpa.cliente.telefone.jpaclientetelefone;
+package fm.com.jpa.cliente.telefone;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

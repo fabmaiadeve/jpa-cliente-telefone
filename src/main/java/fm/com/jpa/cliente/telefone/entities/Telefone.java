@@ -1,4 +1,4 @@
-package fm.com.jpa.cliente.telefone.jpaclientetelefone.entities;
+package fm.com.jpa.cliente.telefone.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,6 +14,8 @@ public class Telefone  implements Serializable {
     private Long id;
 
     private String numero;
+
+    private Boolean ehCelular;
 
     @org.hibernate.annotations.ForeignKey(name = "usuario_id")
     @ManyToOne
@@ -33,6 +35,14 @@ public class Telefone  implements Serializable {
 
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public Boolean getEhCelular() {
+        return ehCelular;
+    }
+
+    public void setEhCelular(Boolean ehCelular) {
+        this.ehCelular = ehCelular;
     }
 
     public Cliente getCliente() {

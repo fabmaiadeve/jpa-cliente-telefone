@@ -1,4 +1,4 @@
-package fm.com.jpa.cliente.telefone.jpaclientetelefone;
+package fm.com.jpa.cliente.telefone;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

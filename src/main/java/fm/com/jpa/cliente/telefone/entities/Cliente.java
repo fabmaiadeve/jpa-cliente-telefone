@@ -1,7 +1,8 @@
-package fm.com.jpa.cliente.telefone.jpaclientetelefone.entities;
+package fm.com.jpa.cliente.telefone.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +16,7 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String login;
-
-    private String senha;
+    private LocalDateTime dt_nascimento;
 
     private String nome;
 
@@ -32,20 +31,12 @@ public class Cliente implements Serializable {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public LocalDateTime getDt_nascimento() {
+        return dt_nascimento;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setDt_nascimento(LocalDateTime dt_nascimento) {
+        this.dt_nascimento = dt_nascimento;
     }
 
     public String getNome() {
