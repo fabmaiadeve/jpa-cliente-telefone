@@ -17,7 +17,7 @@ public class Telefone  implements Serializable {
 
     private Boolean ehCelular;
 
-    @org.hibernate.annotations.ForeignKey(name = "usuario_id")
+    @org.hibernate.annotations.ForeignKey(name = "cliente_id")
     @ManyToOne
     private Cliente cliente;
 
