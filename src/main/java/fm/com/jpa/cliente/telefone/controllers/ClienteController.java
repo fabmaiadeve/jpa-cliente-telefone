@@ -32,12 +32,10 @@ public class ClienteController {
         return service.salvaCliente(cliente);
     }
 
-
-
     @PutMapping("/{id}")
     public ResponseEntity<Object> alteraCliente(@PathVariable(value = "id") Long id, @RequestBody @Valid ClienteDto clienteDto){
 
-        Optional<Cliente> opt = service.encotrapeloID(id);
+        Optional<Cliente> opt = service.encontraPeloID(id);
 
         if (!opt.isPresent()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente não encontrado");
@@ -63,7 +61,7 @@ public class ClienteController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> listaClientePorId(@PathVariable(value = "id") Long id){
-        Optional<Cliente> optional = service.encotrapeloID(id);
+        Optional<Cliente> optional = service.encontraPeloID(id);
 
         if (!optional.isPresent()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente não encontrado");
@@ -75,5 +73,4 @@ public class ClienteController {
         clienteDto.setDt_nascimento(optional.get().getDt_nascimento());
         return ResponseEntity.status(HttpStatus.OK).body(clienteDto);
     }
-
 }

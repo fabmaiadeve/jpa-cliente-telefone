@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Service
 public class ClienteService {
-
     @Autowired
     ClienteRepository rep;
 
@@ -36,7 +35,7 @@ public class ClienteService {
         return cliente;
     }
 
-    public Optional<Cliente> encotrapeloID(Long id) {
+    public Optional<Cliente> encontraPeloID(Long id) {
         Optional<Cliente> opt = rep.findById(id);
         return opt;
     }
