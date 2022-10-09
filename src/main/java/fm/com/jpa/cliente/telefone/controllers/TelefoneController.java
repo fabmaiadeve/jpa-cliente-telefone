@@ -3,6 +3,7 @@ package fm.com.jpa.cliente.telefone.controllers;
 
 import fm.com.jpa.cliente.telefone.dtos.TelefoneDto;
 import fm.com.jpa.cliente.telefone.entities.Telefone;
+import fm.com.jpa.cliente.telefone.services.ClienteService;
 import fm.com.jpa.cliente.telefone.services.TelefoneService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class TelefoneController {
     @Autowired
     private TelefoneService service;
 
+    @Autowired
+    private ClienteService clienteService;
+
     @GetMapping
     List<TelefoneDto> listaTelefones() {
         List<Telefone> listaTelefones = service.listaTodosTelefones();
@@ -29,11 +33,19 @@ public class TelefoneController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Telefone adicionaTelefone(@RequestBody Telefone telefone){
+    public ResponseEntity<Object> adicionaTelefone(@RequestBody Telefone telefone){
 
-        return service.salvaTelefone(telefone);
+        TelefoneDto telTeste = new TelefoneDto(telefone);
+        System.out.println(telTeste);
+
+        Boolean existeCliente = clienteService.verifica(telefone.getCliente().getId());
+
+        if(!existeCliente){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente não encontrado");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(service.salvaTelefone(telefone));
     }
-
+/**
     @PutMapping("/{id}")
     public ResponseEntity<Object> alteraTelefone(@PathVariable(value = "id") Long id, @RequestBody @Valid TelefoneDto telefoneDto){
 
@@ -45,10 +57,10 @@ public class TelefoneController {
 
         var telefone = new Telefone();
         BeanUtils.copyProperties(telefoneDto, telefone);
-        telefone.setId(opt.get().getId());
+        telefone.setId(opt.get());
         return ResponseEntity.status(HttpStatus.OK).body(service.salvaTelefone(telefone));
     }
-
+*/
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletaTelefone(@PathVariable(value = "id") Long id){
 

@@ -1,6 +1,7 @@
 package fm.com.jpa.cliente.telefone.services;
 
 import fm.com.jpa.cliente.telefone.entities.Telefone;
+import fm.com.jpa.cliente.telefone.repositories.ClienteRepository;
 import fm.com.jpa.cliente.telefone.repositories.TelefoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,8 +12,13 @@ import java.util.Optional;
 
 @Service
 public class TelefoneService {
+    private TelefoneRepository rep;
+    private ClienteRepository clienteRepository;
 
-TelefoneRepository rep;
+    public TelefoneService(TelefoneRepository rep, ClienteRepository clienteRepository) {
+        this.rep = rep;
+        this.clienteRepository = clienteRepository;
+    }
 
     public List<Telefone> listaTodosTelefones() { return rep.findAll(); }
 
